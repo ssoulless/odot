@@ -8,6 +8,14 @@
 </head>
 <body>
 
+	<div class="nav">
+		<h1><%= link_to %Q|Odot|, root_path %></h1>
+			<ul>
+				<li><%= link_to %Q|Todo Lists|, todo_lists_path %>
+			</ul>
+			<br class="clear" />
+	</div>
+
 	<% flash.each do |type, message| %>
 		<div class="alert flash <%= type %>">
 			<%= message %>
