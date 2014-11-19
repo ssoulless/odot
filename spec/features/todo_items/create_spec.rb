@@ -16,7 +16,7 @@ describe "Creating todo items" do
 		fill_in "Content", with: %Q|Milk|
 		click_button "Save"
 		expect(page).to have_content(%Q|Added todo list item.|)
-		within("ul.todo_items") do
+		within("table.todo_items") do
 			expect(page).to have_content(%Q|Milk|)
 		end
 	end
