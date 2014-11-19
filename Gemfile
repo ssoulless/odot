@@ -39,10 +39,13 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-expectations', '~> 3.0.0'
 end
 
 group :test do
-  gem 'capybara', '~> 2.1.0'
+  gem 'capybara', '~> 2.3.0'
   gem 'shoulda-matchers', '~> 2.7.0'
+  gem 'rspec-its', '~> 1.0.1'
+  gem 'rspec-activemodel-mocks', '~> 1.0.1'
 end
