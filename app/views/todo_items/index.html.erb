@@ -5,7 +5,9 @@
 	<% @todo_list.todo_items.each do |todo_item| %>
 		<tr id="<%= dom_id(todo_item) %>">
 			<td><%= todo_item.content %></td>
-			<td><%= link_to "Edit", edit_todo_list_todo_item_path(todo_item) %>
+			<td>
+				<%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
+				<%= link_to "Edit", edit_todo_list_todo_item_path(todo_item) %>
 			<%= link_to "Delete", todo_list_todo_item_path(todo_item), method: :delete, data: { confirm: %Q|Are you sure?| } %></td>
 		</tr>
 	<% end %>
