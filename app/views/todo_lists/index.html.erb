@@ -1,29 +1,19 @@
-<h1>Listing todo_lists</h1>
+<h1>Todo Lists</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @todo_lists.each do |todo_list| %>
-      <tr id="<%= dom_id(todo_list) %>">
-        <td><%= todo_list.title %></td>
-        <td><%= todo_list.description %></td>
-        <td>
-          <%= link_to 'List Items', todo_list_todo_items_path(todo_list) %>
-          <%= link_to 'Show', todo_list %>
-          <%= link_to 'Edit', edit_todo_list_path(todo_list) %>
-          <%= link_to 'Destroy', todo_list, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @todo_lists.each do |todo_list| %>
+  <div class="todo_list" id="<%= dom_id(todo_list) %>">
+    <h2><%= todo_list.title %></h2>
+    <p><%= todo_list.description %></p>
+    <ul class="functions">
+      <li><%= link_to 'List Items', todo_list_todo_items_path(todo_list) %></li>
+      <li><%= link_to 'Show', todo_list %></li>
+      <li><%= link_to 'Edit', edit_todo_list_path(todo_list) %></li>
+      <li><%= link_to 'Destroy', todo_list, method: :delete, data: { confirm: %Q|Are you sure?| } %></li>
+    </ul>
+    <br class="clear" />
+  </div>
+<% end %>
 
 <br>
 
