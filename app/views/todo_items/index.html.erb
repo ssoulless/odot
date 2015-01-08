@@ -11,7 +11,7 @@
 	</thead>
 	<tbody>
 		<% @todo_list.todo_items.each do |todo_item| %>
-			<tr id="<%= dom_id(todo_item) %>">
+			<tr id="<%= dom_id(todo_item) %>" class="item">
 				<td>
 					<% if todo_item.completed? %>
 						<%= todo_item.completed_at %>

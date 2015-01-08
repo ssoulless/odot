@@ -5,7 +5,7 @@
 <% if @todo_list.has_incomplete_items? %>
 	<h3>Incomplete Items: </h3>
 
-	<ul>
+	<ul class="todo_items">
 		<% @todo_list.todo_items.incomplete.each do |todo_item| %>
 			<li><%= todo_item.content %></li>
 		<% end %>
@@ -15,7 +15,7 @@
 <% if @todo_list.has_complete_items? %>
 	<h3>Complete Items: </h3>
 
-	<ul>
+	<ul class="todo_items complete-list">
 		<% @todo_list.todo_items.complete.each do |todo_item| %>
 			<li><%= todo_item.content %></li>
 		<% end %>
