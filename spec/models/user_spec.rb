@@ -5,7 +5,9 @@ describe User do
 		{
 			first_name: "Sebastian",
 			last_name: "Velandia",
-			email: "sebas.velandia@grupo.ly"
+			email: "sebas.velandia@grupo.ly",
+			password: "elarquero27",
+			password_confirmation: "elarquero27"
 		}
 	}
 	context "Validations" do
@@ -26,6 +28,11 @@ describe User do
 		it "Requires a unique email (case insensitive)" do
 			user.email = "SEBAS.VELANDIA@GRUPO.LY"
 			expect(user).to validate_uniqueness_of(:email)
+		end
+
+		it "Requires the email address to look like an email" do
+			user.email = "sebas"
+			expect(user).to_not be_valid
 		end
 
 	end

@@ -23,9 +23,13 @@ RSpec.describe UsersController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) {{
+    "first_name" => "MyString",
+    "last_name" => "LastName",
+    "email" => "email@example.com",
+    "password" => "password12345",
+    "password_confirmation" => "password12345"  
+  }}
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
