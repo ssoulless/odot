@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         format.html { redirect_to todo_lists_path, success: 'Thanks for signing up!' }
-        flash[:success] = %Q|Thanks for signing up!|
+        #flash[:success] = %Q|Thanks for signing up!| Ver application_controller.rb para entender porqué comenté esto
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
