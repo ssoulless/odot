@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
   add_flash_types :success
 
   def current_user
-  	@current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def require_user
-  	if @current_user
-  		true
-  	else
-  		redirect_to new_user_session_path, notice: %Q|You must be logged in to access this page|
-  	end
+    if current_user
+      true
+    else
+      redirect_to new_user_session_path, notice: "You must be logged in to access that page."
+    end
   end
 end
