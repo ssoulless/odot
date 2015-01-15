@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe "Creating todo items" do
+	let(:user) { create(:user) }
 	let!(:todo_list) { TodoList.create(title: "Grocery list", description: "Grocery list description") } 
 
+	before do
+		sign_in user, password: "elarquero"
+	end
+	
 	def visit_todo_list list
 		visit "/todo_lists"
 		within "#todo_list_#{list.id}" do
