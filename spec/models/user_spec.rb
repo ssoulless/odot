@@ -10,6 +10,11 @@ describe User do
 			password_confirmation: "elarquero27"
 		}
 	}
+
+	context "relationships" do
+		it { should have_many(:todo_lists) }
+	end
+
 	context "Validations" do
 		let(:user) { User.new(valid_attributes) }
 
