@@ -32,7 +32,7 @@ describe TodoListsController do
 
   before do
     #allow(controller).to receive(:require_user).and_return(true)
-    sign_in(build_stubbed(:user))
+    sign_in(create(:user))
   end
 
   describe "GET index" do
