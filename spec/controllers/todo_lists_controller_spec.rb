@@ -31,7 +31,8 @@ describe TodoListsController do
   let(:valid_session) { {} }
 
   before do
-    allow(controller).to receive(:require_user).and_return(true)
+    #allow(controller).to receive(:require_user).and_return(true)
+    sign_in(build_stubbed(:user))
   end
 
   describe "GET index" do
