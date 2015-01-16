@@ -37,33 +37,45 @@ describe TodoListsController do
   end
 
   describe "GET index" do
-    it "assigns all todo_lists as @todo_lists" do
-      todo_list = TodoList.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:todo_lists).should eq([todo_list])
+    context "logged in" do
+      it "assigns all todo_lists as @todo_lists" do
+        todo_list = user.todo_lists.create! valid_attributes
+        get :index, {}, valid_session
+        assigns(:todo_lists).should eq([todo_list])
+        expect(assigns(:todo_lists).map(&:user)).to eq([user])
+      end
+
+      it "does not load other user's todo lists" do
+        other_todo_list = TodoList.create!(valid_attributes.merge(user_id: create(:user).id))
+        get :index, {}, valid_session
+        expect(assigns(:todo_lists)).to_not include(other_todo_list)
+      end
     end
   end
 
   describe "GET show" do
-    it "assigns the requested todo_list as @todo_list" do
-      todo_list = TodoList.create! valid_attributes
+    it "assigns the requested todo_list as @todo_list for the logged in user" do
+      todo_list = user.todo_lists.create! valid_attributes
       get :show, {:id => todo_list.to_param}, valid_session
       assigns(:todo_list).should eq(todo_list)
+      expect(assigns(:todo_list).user).to eq(user)
     end
   end
 
   describe "GET new" do
-    it "assigns a new todo_list as @todo_list" do
+    it "assigns a new todo_list as @todo_list for the logged in user" do
       get :new, {}, valid_session
       assigns(:todo_list).should be_a_new(TodoList)
+      expect(assigns(:todo_list).user).to eq(user)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested todo_list as @todo_list" do
-      todo_list = TodoList.create! valid_attributes
+    it "assigns the requested todo_list as @todo_list for the logged in user" do
+      todo_list = user.todo_lists.create! valid_attributes
       get :edit, {:id => todo_list.to_param}, valid_session
       assigns(:todo_list).should eq(todo_list)
+      expect(assigns(:todo_list).user).to eq(user)
     end
   end
 
@@ -85,6 +97,19 @@ describe TodoListsController do
         post :create, {:todo_list => valid_attributes}, valid_session
         response.should redirect_to(TodoList.last)
       end
+
+      it "creates a todo list for the current user" do
+        post :create, {:todo_list => valid_attributes}, valid_session
+        todo_list = TodoList.last
+        expect(todo_list.user).to eq(user)
+      end
+
+      it "does not allow user to create todo_lists for other users" do
+        other_user = create(:user)
+        post :create, {:todo_list => valid_attributes.merge(user_id: other_user.id)}, valid_session
+        todo_list = TodoList.last
+        expect(todo_list.user).to eq(user)
+      end
     end
 
     describe "with invalid params" do
@@ -93,6 +118,7 @@ describe TodoListsController do
         TodoList.any_instance.stub(:save).and_return(false)
         post :create, {:todo_list => { "title" => "invalid value" }}, valid_session
         assigns(:todo_list).should be_a_new(TodoList)
+        expect(assigns(:todo_list).user).to eq(user)
       end
 
       it "re-renders the 'new' template" do
@@ -107,7 +133,7 @@ describe TodoListsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested todo_list" do
-        todo_list = TodoList.create! valid_attributes
+        todo_list = user.todo_lists.create! valid_attributes
         # Assuming there are no other todo_lists in the database, this
         # specifies that the TodoList created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -116,14 +142,15 @@ describe TodoListsController do
         put :update, {:id => todo_list.to_param, :todo_list => { "title" => "MyString" }}, valid_session
       end
 
-      it "assigns the requested todo_list as @todo_list" do
-        todo_list = TodoList.create! valid_attributes
+      it "assigns the requested todo_list as @todo_list for the logged in user" do
+        todo_list = user.todo_lists.create! valid_attributes
         put :update, {:id => todo_list.to_param, :todo_list => valid_attributes}, valid_session
         assigns(:todo_list).should eq(todo_list)
+        expect(assigns(:todo_list).user).to eq(user)
       end
 
-      it "redirects to the todo_list" do
-        todo_list = TodoList.create! valid_attributes
+      it "redirects to the todo_list for the logged in user" do
+        todo_list = user.todo_lists.create! valid_attributes
         put :update, {:id => todo_list.to_param, :todo_list => valid_attributes}, valid_session
         response.should redirect_to(todo_list)
       end
@@ -131,7 +158,7 @@ describe TodoListsController do
 
     describe "with invalid params" do
       it "assigns the todo_list as @todo_list" do
-        todo_list = TodoList.create! valid_attributes
+        todo_list = user.todo_lists.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         TodoList.any_instance.stub(:save).and_return(false)
         put :update, {:id => todo_list.to_param, :todo_list => { "title" => "invalid value" }}, valid_session
@@ -139,7 +166,7 @@ describe TodoListsController do
       end
 
       it "re-renders the 'edit' template" do
-        todo_list = TodoList.create! valid_attributes
+        todo_list = user.todo_lists.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         TodoList.any_instance.stub(:save).and_return(false)
         put :update, {:id => todo_list.to_param, :todo_list => { "title" => "invalid value" }}, valid_session
@@ -149,18 +176,17 @@ describe TodoListsController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested todo_list" do
-      todo_list = TodoList.create! valid_attributes
+    it "destroys the requested todo_list for the logged in user" do
+      todo_list = user.todo_lists.create! valid_attributes
       expect {
         delete :destroy, {:id => todo_list.to_param}, valid_session
-      }.to change(TodoList, :count).by(-1)
+      }.to change(user.todo_lists, :count).by(-1)
     end
 
     it "redirects to the todo_lists list" do
-      todo_list = TodoList.create! valid_attributes
+      todo_list = user.todo_lists.create! valid_attributes
       delete :destroy, {:id => todo_list.to_param}, valid_session
       response.should redirect_to(todo_lists_url)
     end
   end
-
 end
