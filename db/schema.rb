@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115203816) do
+ActiveRecord::Schema.define(version: 20150116195456) do
 
   create_table "todo_items", force: true do |t|
     t.integer  "todo_list_id"
@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(version: 20150115203816) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_reset_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["password_reset_token"], name: "index_users_on_password_reset_token"
 
 end
