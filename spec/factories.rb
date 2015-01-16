@@ -6,4 +6,10 @@ FactoryGirl.define do
 		password "elarquero"
 		password_confirmation "elarquero"
 	end
+
+	factory :todo_list do
+		title "Todo List title"
+		description "Todo List description"
+		user
+	end
 end
