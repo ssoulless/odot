@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
 	def downcase_email
 		self.email = email.downcase
 	end
+
+	def generate_password_reset_token!
+		update_attribute :password_reset_token, SecureRandom.urlsafe_base64(48)
+	end
 end
