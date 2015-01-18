@@ -45,6 +45,13 @@ RSpec.describe UserSessionsController, :type => :controller do
         post :create, email: "sebas.velandia@grupo.ly", password: "elarquero"
         expect(flash[:success]).to eq("Thanks for logging in")
       end
+
+      it "sets the remember_me_token cookie if chosen" do
+        expect(cookies).to_not  have_key('remember_me_token')
+        post :create, email: "sebas.velandia@grupo.ly", password: "elarquero", remember_me: "1"
+        expect(cookies).to  have_key('remember_me_token')
+        expect(cookies['remember_me_token']).to_not be_nil
+      end
     end
 
     shared_examples_for "denied login" do
