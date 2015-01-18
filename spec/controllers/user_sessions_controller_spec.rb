@@ -108,6 +108,12 @@ RSpec.describe UserSessionsController, :type => :controller do
         expect(session[:user_id]).to be_nil
       end
 
+      it "removes the remember_me_token cookie" do
+        cookies['remember_me_token'] = 'remembered'
+        delete :destroy
+        expect(cookies['remember_me_token']).to be_nil
+      end
+
       it "resets the session" do
         expect(controller).to receive(:reset_session)
         delete :destroy
