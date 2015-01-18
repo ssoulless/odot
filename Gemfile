@@ -46,6 +46,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.3.0'
+  gem 'capybara-email', '~> 2.4'
   gem 'shoulda-matchers', '~> 2.7.0'
   gem 'rspec-its', '~> 1.0.1'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'
