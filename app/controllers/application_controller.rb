@@ -3,9 +3,19 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   add_flash_types :success
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :render_error
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    elsif cookies.permanent.signed[:remember_me_token ]
+      verification = Rails.application.message_verifier(:remember_me).verify(cookies.permanent.signed[:remember_me_token ])
+      if verification
+        Rails.logger.info "Logging in by cookie"
+        @current_user ||= User.find(verification)
+      end
+    end
   end
 
   def require_user
@@ -14,5 +24,13 @@ class ApplicationController < ActionController::Base
     else
       redirect_to new_user_session_path, notice: "You must be logged in to access that page."
     end
+  end
+
+  private
+  def render_error
+    render file: 'public/500.html', status: :internal_server_error, layout: false
+  end  
+  def render_404
+    reder file: 'public/404.html', status: :not_found, layout: false
   end
 end
