@@ -20,5 +20,6 @@ module Odot
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
     I18n.enforce_available_locales = false
+    Rails.application.config.assets.precompile += %w( vendor/modernizr.js )
   end
 end
