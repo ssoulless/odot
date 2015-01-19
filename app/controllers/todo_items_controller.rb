@@ -48,8 +48,8 @@ class TodoItemsController < ApplicationController
 
   def complete
      @todo_item = @todo_list.todo_items.find(params[:id])
-     @todo_item.update_attribute(:completed_at, Time.now)
-     redirect_to todo_list_todo_items_path, notice: %Q|Todo item marked as complete.|
+     @todo_item.toggle_completion!
+     redirect_to todo_list_todo_items_path, notice: %Q|Todo item updated.|
   end
 
   def url_options
