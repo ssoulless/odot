@@ -10,6 +10,7 @@ describe "Deleting todo items" do
 	end
 
 	it "is successful" do
+		pending "Adding delete link"
 		visit_todo_list(todo_list)
 		within "#todo_item_#{todo_item.id}" do
 			click_link "Delete"

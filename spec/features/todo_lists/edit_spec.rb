@@ -23,6 +23,7 @@ describe "Editing todo lists" do
 	end
 
 	it "updates a todo list successfully with correct information" do
+		pending "Link for edit todo_lists"
 		visit "/todo_lists"
 		update_todo_list todo_list: todo_list,
 						 title: %Q|New title|
@@ -33,11 +34,13 @@ describe "Editing todo lists" do
 	end
 
 	it "displays an error with no title" do
+		pending "Link for edit todo_lists"
 		update_todo_list todo_list: todo_list, title: %Q||
 		expect(page).to have_content(%Q|error|)
 	end
 
 	it "displays an error with too short a title" do
+		pending "Link to edit todo_lists"
 		update_todo_list todo_list: todo_list, title: %Q|hi|
 		expect(page).to have_content(%Q|error|)
 	end

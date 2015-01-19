@@ -7,13 +7,6 @@ describe "Creating todo items" do
 	before do
 		sign_in todo_list.user, password: "elarquero"
 	end
-	
-	def visit_todo_list list
-		visit "/todo_lists"
-		within "#todo_list_#{list.id}" do
-			click_link "List Items"
-		end
-	end
 
 	it "is successful with valid content" do
 		visit_todo_list(todo_list)
@@ -21,7 +14,7 @@ describe "Creating todo items" do
 		fill_in "Content", with: %Q|Milk|
 		click_button "Save"
 		expect(page).to have_content(%Q|Added todo list item.|)
-		within("table.todo_items") do
+		within(".todo-items") do
 			expect(page).to have_content(%Q|Milk|)
 		end
 	end
