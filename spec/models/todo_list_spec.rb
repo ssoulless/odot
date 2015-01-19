@@ -7,7 +7,7 @@ describe TodoList do
   end
 
   describe "#has_complete_items?" do
-  	let(:todo_list) { TodoList.create(title: %Q|Groceries|, description: %Q|Grocery list|) }
+  	let(:todo_list) { TodoList.create(title: %Q|Groceries|) }
 
   	it "returns true with completed todo list items" do
   		todo_list.todo_items.create(content: %Q|Eggs|, completed_at: 1.minute.ago)
@@ -21,7 +21,7 @@ describe TodoList do
   end
 
   describe "#has_incomplete_items?" do
-  	let(:todo_list) { TodoList.create(title: %Q|Groceries|, description: %Q|Grocery list|) }
+  	let(:todo_list) { TodoList.create(title: %Q|Groceries|) }
 
   	it "returns true with incompleted todo list items" do
   		todo_list.todo_items.create(content: %Q|Eggs|)

@@ -4,7 +4,6 @@
 <% @todo_lists.each do |todo_list| %>
   <div class="todo_list" id="<%= dom_id(todo_list) %>">
     <h2><%= todo_list.title %></h2>
-    <p><%= todo_list.description %></p>
     <ul class="functions">
       <li><%= link_to 'List Items', todo_list_todo_items_path(todo_list) %></li>
       <li><%= link_to 'Show', todo_list %></li>
