@@ -1,4 +1,4 @@
-<h2 class="page-title"><%= @todo_list.title %></h2	>
+<h2 class="page-title truncate" title="<%= @todo_list.title %>"><%= @todo_list.title %></h2	>
 
 <ul class="list todo-items no-bullet">	
 	<% @todo_list.todo_items.each do |todo_item| %>
@@ -10,7 +10,7 @@
 					<%= link_to "Mark Complete", complete_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, class: "icon-check unchecked hide-text" %>
 				<% end %>
 			</div>
-			<div class"small-10 medium-11 columns truncate todo-content" title="<%= todo_item.content %>">
+			<div class="small-10 medium-11 columns truncate todo-content" title="<%= todo_item.content %>">
 				<%= link_to todo_item.content, edit_todo_list_todo_item_path(@todo_list, todo_item) %>
 			</div>
 		</li>
