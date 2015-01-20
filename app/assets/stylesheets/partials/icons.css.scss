@@ -1,0 +1,27 @@
+.icon-arrow-left {
+	@include icon("icon-arrow-left.svg");
+}
+.icon-new {
+	@include icon("icon-new.svg");
+}
+.icon-check {
+	@include icon("icon-check.svg");
+}
+.icon-checked {
+	@include icon("icon-checked.svg");
+}
+.icon-unchecked {
+	@include icon("icon-unchecked.svg");
+}
+.icon-close {
+	@include icon("icon-close.svg");
+}
+.icon-signout {
+	@include icon("icon-signout.svg");
+}
+.icon-settings {
+	@include icon("icon-settings.svg");
+}
+.icon-email {
+	@include icon("icon-email.svg");
+}
