@@ -1,0 +1,24 @@
+.global-header {
+	margin-top: 10px;
+	.header-icon {
+		padding: 1.5em 0.25em;
+	}
+}
+
+.logo {
+	margin: 0.4em 0;
+	a {
+		background: transparent url(asset_path(#{"logo-odot.svg"})) no-repeat center center;
+		background-size: contain;
+		display: block;
+		height: 34px;
+	}
+}
+
+.page-title{
+	background: rgb(234, 147, 92);
+	color: #FFF;
+	text-align: center;
+	padding: 0.5em;
+	font-size: 1.5rem;
+}
