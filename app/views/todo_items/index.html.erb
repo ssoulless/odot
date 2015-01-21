@@ -1,5 +1,4 @@
-<% title "#{@todo_list.title}" %>
-<h2 class="page-title truncate" title="<%= @todo_list.title %>"><%= @todo_list.title %></h2	>
+<%= title "#{@todo_list.title}" %>
 
 <ul class="list todo-items no-bullet">	
 	<% @todo_list.todo_items.each do |todo_item| %>

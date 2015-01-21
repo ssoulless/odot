@@ -1,5 +1,4 @@
-<% title "Log In" %>
-<h1>Log In</h1>
+<%= title "Log In" %>
 <%= form_tag user_sessions_path do %>
 	<%= label_tag :email, "Email Address" %>
 	<%= text_field_tag :email, params[:email] %>

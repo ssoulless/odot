@@ -1,5 +1,4 @@
-<% title "Update your password" %>
-<h1>Update your password</h1>
+<%= title "Update your password" %>
 <%= form_for @user, url: password_reset_path(@user.password_reset_token), html: {  method: :patch} do |form| %>
 
 	<%= form.label :password %>
