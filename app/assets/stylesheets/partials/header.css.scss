@@ -8,7 +8,7 @@
 .logo {
 	margin: 0.4em 0;
 	a {
-		background: transparent url(asset_path(#{"logo-odot.svg"})) no-repeat center center;
+		background: transparent url(image_path(#{"logo-odot.svg"})) no-repeat center center;
 		background-size: contain;
 		display: block;
 		height: 34px;
