@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def go_back(path)
+    @go_back ||= path
+    @go_back
+  end
   def render_error
     render file: 'public/500.html', status: :internal_server_error, layout: false
   end  

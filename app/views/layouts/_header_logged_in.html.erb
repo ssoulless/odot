@@ -1,5 +1,9 @@
 <div class="small-4 columns header-icon">
-	<%= link_to %Q|Log Out|, logout_path, method: :delete, class: "icon-signout hide-text" %>
+	<% if @go_back %>
+		<%= link_to "Back", @go_back, class: "icon-arrow-left hide-text" %>
+	<% else %>
+		<%= link_to %Q|Log Out|, logout_path, method: :delete, class: "icon-signout hide-text" %>
+	<% end %>
 </div>
 <div class="small-4 columns">
 	<h1 class="logo"><%= link_to "Odot", root_path, class: "hide-text" %></h1>

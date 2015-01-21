@@ -1,9 +1,10 @@
 class TodoItemsController < ApplicationController
   before_action :require_user
   before_action :find_todo_list
+  before_action :set_back_link, except: [:index]
 
   def index
-
+    go_back todo_lists_path
   end
 
   def new
@@ -63,5 +64,9 @@ class TodoItemsController < ApplicationController
 
   def todo_item_params
   	params[:todo_item].permit(:content)
+  end
+
+  def set_back_link
+    go_back todo_list_todo_items_path(@todo_list)
   end
 end
