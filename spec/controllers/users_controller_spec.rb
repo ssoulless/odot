@@ -39,7 +39,12 @@ RSpec.describe UsersController, :type => :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  let!(:user) { create(:user) }
 
+  before do
+    #allow(controller).to receive(:require_user).and_return(true)
+    sign_in(user)
+  end
   describe "GET new" do
     it "assigns a new user as @user" do
       get :new, {}, valid_session
@@ -49,7 +54,6 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "GET edit" do
     it "assigns the requested user as @user" do
-      user = User.create! valid_attributes
       get :edit, {:id => user.to_param}, valid_session
       expect(assigns(:user)).to eq(user)
     end
@@ -118,7 +122,6 @@ RSpec.describe UsersController, :type => :controller do
       end
 
       it "redirects to the user" do
-        user = User.create! valid_attributes
         put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
         expect(response).to redirect_to(user)
       end
@@ -139,19 +142,14 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested user" do
-      user = User.create! valid_attributes
-      expect {
-        delete :destroy, {:id => user.to_param}, valid_session
-      }.to change(User, :count).by(-1)
-    end
-
-    it "redirects to the users list" do
-      user = User.create! valid_attributes
-      delete :destroy, {:id => user.to_param}, valid_session
-      expect(response).to redirect_to(users_url)
-    end
-  end
+  # describe "DELETE destroy" do
+  #   it "destroys the requested user" do
+  #     pending "Create Delete functionality"
+  #     # user = User.create! valid_attributes
+  #     # expect {
+  #     #   delete :destroy, {:id => user.to_param}, valid_session
+  #     # }.to change(User, :count).by(-1)
+  #   end
+  # end
 
 end
