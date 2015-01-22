@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_user, only: [:edit, :update, :destroy, :show]
   # GET /users/new
   def new
     @user = User.new
@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+
   end
 
   # POST /users
