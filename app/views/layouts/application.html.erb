@@ -32,8 +32,8 @@
 			<%= yield %>
 		</div>
 	</div>
-	<footer class="row">
-		<div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns text-centered">
+	<footer class="row global-footer">
+		<div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns text-center">
 			<% if @current_user %>
 				<%= link_to "Settings", edit_user_path(@current_user) %>
 			<% end %>
