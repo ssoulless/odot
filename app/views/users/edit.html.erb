@@ -1,6 +1,36 @@
 <%= title "Account Settings" %>
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+  	<legend>About You</legend>
+  	<%= f.label :first_name, "First name" %>
+    <%= f.text_field :first_name %>
+    <%= f.label :last_name, "Last name" %>
+    <%= f.text_field :last_name %>
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email %>
+  </fieldset>
+ 	
+  <fieldset>
+  	<legend>Change your password</legend> 
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation, "Password (again)" %>
+    <%= f.password_field :password_confirmation %>
+  </fieldset>
+  <div class="row">
+  	<div class="small-12 columns">
+    	<%= f.submit "Save", class: "button radius expand" %>
+    </div>
+  </div>
+<% end %>
