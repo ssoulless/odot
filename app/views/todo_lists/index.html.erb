@@ -1,12 +1,21 @@
 <%= title "My Todo Lists" %>
 
-<ul class="list todo-lists no-bullet">
-<% @todo_lists.each do |todo_list| %>
-  <li id="<%= dom_id(todo_list) %>" class="clearfix">
-    <%= link_to todo_list_todo_items_path(todo_list), class: "row" do %>
-      <div class="small-10 medium-11 columns truncate" title="<%= todo_list.title %>"><%= todo_list.title %></div>
-      <div class="small-2 medium-1 columns"><span class="label round"><%= todo_list.todo_items.size %></span></div>
-    <% end %>
-  </li>
+<% if @todo_lists.size > 0 %> 
+	<ul class="list todo-lists no-bullet">
+	<% @todo_lists.each do |todo_list| %>
+	  <li id="<%= dom_id(todo_list) %>" class="clearfix">
+	    <%= link_to todo_list_todo_items_path(todo_list), class: "row" do %>
+	      <div class="small-10 medium-11 columns truncate" title="<%= todo_list.title %>"><%= todo_list.title %></div>
+	      <div class="small-2 medium-1 columns"><span class="label round"><%= todo_list.todo_items.size %></span></div>
+	    <% end %>
+	  </li>
+	<% end %>
+	</ul>
+<% else %>
+	<div class="row blank-slate" >
+		<div class="small-12 small-centered columns">
+			<p>You don't have any todo lists!</p>
+			<%= link_to "Add List", new_todo_list_path, class: "button radius" %>
+		</div>
+	</div>
 <% end %>
-</ul>
