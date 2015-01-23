@@ -17,3 +17,4 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+$(document).on("page:load", function() { $(document).foundation(); });
