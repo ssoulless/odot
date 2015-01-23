@@ -20,3 +20,22 @@
 .unchecked {
 	background-image: none;
 }
+
+#todo-list-functions .outline{
+	background: none;
+	color: $blue;
+	border: 1px solid $blue;
+	&.alert {
+		border-color: red;
+		color: red;
+	}	
+}
+
+#todo-list-functions {
+	margin-top: 10px;
+	a span.fa{
+		display: block;
+		font-size: 1.4em;
+		clear: both;
+	}
+}
