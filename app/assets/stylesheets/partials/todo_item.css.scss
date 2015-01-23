@@ -36,6 +36,19 @@
 	a span.fa{
 		display: block;
 		font-size: 1.4em;
-		clear: both;
+		clear: both;	
 	}
+}
+
+.fa-caret-down, .fa-caret-down {
+	color: white;
+	padding-top: 20px;
+}
+
+.todo-list-title {
+	background: $orange;
+}
+
+.todo.list.title h2 {
+	margin: 0;
 }
