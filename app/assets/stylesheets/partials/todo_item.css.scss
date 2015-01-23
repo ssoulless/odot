@@ -33,6 +33,7 @@
 
 #todo-list-functions {
 	margin-top: 10px;
+	display: none;
 	a span.fa{
 		display: block;
 		font-size: 1.4em;
@@ -40,7 +41,7 @@
 	}
 }
 
-.fa-caret-down, .fa-caret-down {
+.fa-caret-down, .fa-caret-up {
 	color: white;
 	padding-top: 20px;
 }

@@ -1,3 +1,5 @@
+<% content_for(:title) do %><%= @todo_list.title %> | <% end %>
+
 <div class="row collapse todo-list-title">
 	<div class="small-11 columns">
 		<h2 class="page-title truncate"><%= @todo_list.title %></h2>
@@ -7,7 +9,7 @@
 	</div>
 </div>
 
-<div class="row hide" id="todo-list-functions">
+<div class="row" id="todo-list-functions">
 	<div class="small-4 columns">
 		<%= link_to edit_todo_list_path(@todo_list), class: "button expand radius outline" do %>
 			<span class="fa fa-edit"></span>

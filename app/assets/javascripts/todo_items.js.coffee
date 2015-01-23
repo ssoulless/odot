@@ -1,3 +1,11 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).ready ->
+	$('.todo-list-title').on 'click', (event) ->
+		event.preventDefault()
+		$functions = $('#todo-list-functions')
+		if $functions.is(":hidden")
+			$functions.slideDown('fast')
+			$('.todo-list-title span').removeClass('fa-caret-down').addClass('fa-caret-up')
+		else
+			$functions.slideUp('fast')
+			$('.todo-list-title span').removeClass('fa-caret-up').addClass('fa-caret-down')
+		
