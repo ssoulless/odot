@@ -5,16 +5,20 @@ class FoundationFormBuilder < ActionView::Helpers::FormBuilder
 
 	attr_accessor :output_buffer
 
-	def text_field(attribute, options={})
-		options[:label] ||= attribute
-		label_text ||= options.delete(:label).to_s.titleize
-		label_options ||= {}
-		if errors_on?(attribute)
-			wrapper_options = { wrapper_classes: "error"}
-		end
-		wrapper(wrapper_options) do
-			label(attribute, label_text, label_options) +
-			super(attribute, options) + errors_for_field(attribute)
+	%w(email_field text_field password_field).each do |form_method|
+		define_method(form_method) do |*args|
+			attribute = args[0]
+			options = args[1] || {}
+			options[:label] ||= attribute.to_s.titleize
+			label_text ||= options.delete(:label)
+			label_options ||= {}
+			if errors_on?(attribute)
+				wrapper_options = { wrapper_classes: "error"}
+			end
+			wrapper(wrapper_options) do
+				label(attribute, label_text, label_options) +
+				super(attribute, options) + errors_for_field(attribute)
+			end			
 		end
 	end
 

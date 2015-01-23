@@ -28,7 +28,7 @@ describe "Creating todo lists" do
 
 		create_todo_list title: %Q||
 
-		expect(page).to have_content("error")
+		expect(page).to have_content(/can't be blank/i)
 		expect(TodoList.count).to eq(0)
 
 		visit "/todo_lists"
@@ -40,7 +40,7 @@ describe "Creating todo lists" do
 
 		create_todo_list title: %Q|Hi|
 
-		expect(page).to have_content("error")
+		expect(page).to have_content(/too short/i)
 		expect(TodoList.count).to eq(0)
 
 		visit "/todo_lists"

@@ -1,73 +1,15 @@
 <%= title "Sign Up" %>
 
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for(@user, builder: FoundationFormBuilder) do |f| %>
+  
+    		<%= f.text_field :first_name, label: "First name" %>
+    		<%= f.text_field :last_name, label: "Last name" %>
+    		<%= f.email_field :email, label: "Email" %>
+	  		<%= f.password_field :password, label: "Password" %>
+    		<%= f.password_field :password_confirmation, label: "Password (again)" %>
+    	  
+        <%= f.submit "Sign Up" %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  	<div class="row">
-  		<div class="small-12 columns">
-  			<%= f.label :first_name, "First name" %>
-  		</div>
-  	</div>
-  	<div class="row">
-  		<div class="small-12 columns">
-    		<%= f.text_field :first_name %>
-		</div>
-	</div>
-    <div class="row">
-  		<div class="small-12 columns">
-    		<%= f.label :last_name, "Last name" %>
-		</div>
-	</div>
-    <div class="row">
-  		<div class="small-12 columns">
-    		<%= f.text_field :last_name %>
-		</div>
-	</div>
-    <div class="row">
-  		<div class="small-12 columns">
-    		<%= f.label :email, "Email" %>
-		</div>
-	</div>
-    <div class="row">
-  		<div class="small-12 columns">
-    		<%= f.text_field :email %>
-		</div>
-	</div>
-	<div class="row">
-  		<div class="small-12 columns">
-    		<%= f.label :password, "Password" %>
-    	</div>
-    </div>
-	<div class="row">
-  		<div class="small-12 columns">    		
-    		<%= f.password_field :password %>
-    	</div>
-    </div>
-	<div class="row">
-  		<div class="small-12 columns">
-    		<%= f.label :password_confirmation, "Password (again)" %>
-    	</div>
-    </div>
-	<div class="row">
-  		<div class="small-12 columns">
-    		<%= f.password_field :password_confirmation %>
-    	</div>
-    </div>
-
-  <div class="row">
-  	<div class="small-12 columns">
-    	<%= f.submit "Sign Up", class: "button radius expand" %>
-    </div>
-  </div>
 <% end %>
 
 
