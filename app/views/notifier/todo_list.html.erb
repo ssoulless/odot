@@ -1,0 +1,14 @@
+<p><%= @user.first_name %> sent you a todo list from Odot</p>
+
+<h3><%= @todo_list.title %></h3>
+
+<ul>
+<% @todo_list.todo_items.each do |item| %>
+<li><%= item.content %></li>
+<% end %>
+</ul>
+
+<p>
+Love,<br />
+Odot
+</p>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   resources :todo_lists do
+    put :email, on: :member
     resources :todo_items do
       member do
         patch :complete

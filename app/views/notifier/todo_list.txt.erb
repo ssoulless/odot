@@ -1,0 +1,10 @@
+<%= @user.first_name %> sent you a todo list from Odot
+
+<%= @todo_list.title %>
+
+<% @todo_list.todo_items.each do |item| %>
+<%= item.content %>
+<% end %>
+
+Love,
+Odot

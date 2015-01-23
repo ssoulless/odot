@@ -46,3 +46,13 @@
 		</li>
 	<% end %>
 </ul>
+
+<div id="email-modal" class="reveal-modal tiny" data-reveal>
+	<a class="close-reveal-modal">&#215;</a>
+	<%= form_tag email_todo_list_path(@todo_list), method: :put do %>
+		<%= label_tag :destination, "What email address would you like to send  this to?" %>
+		<%= text_field_tag :destination %>
+		<br />
+		<%= submit_tag "Send List", class: "button radius medium expand submit" %>
+	<% end %>
+</div>
