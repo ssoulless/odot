@@ -87,6 +87,11 @@ RSpec.describe UsersController, :type => :controller do
         post :create, {:user => valid_attributes}, valid_session
         expect(session[:user_id]).to eq(User.find_by(email: valid_attributes["email"]).id)
       end
+
+      it "calls the create_default_lists method" do
+        User.any_instance.should_receive(:create_default_lists)
+        post :create, {:user => valid_attributes}, valid_session
+      end
     end
 
     describe "with invalid params" do
