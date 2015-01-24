@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pages/home'
+
   get "/login" => "user_sessions#new", as: :login
   delete "/logout" => "user_sessions#destroy", as: :logout
 
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  root 'todo_lists#index'
+  root 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

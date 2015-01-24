@@ -1,0 +1,6 @@
+<% flash.each do |type, message| %>
+	<div class="alert-box text-center flash <%= type %>">
+		<%= message %>
+		<a href="#" class="close">&times;</a>
+	</div>
+<% end %>

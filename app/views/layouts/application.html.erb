@@ -11,13 +11,8 @@
 </head>
 <body>
 
-	<% flash.each do |type, message| %>
-		<div class="alert-box text-center flash <%= type %>">
-			<%= message %>
-			<a href="#" class="close">&times;</a>
-		</div>
-	<% end %>
-
+	<%= render partial: 'layouts/flash' %>
+	
 	<header class="row global-header">
 		<div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns">
 			<% if @current_user %>
