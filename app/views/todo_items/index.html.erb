@@ -23,7 +23,7 @@
 		<% end %>
 	</div>
 	<div class="small-4 columns">
-		<%= link_to edit_todo_list_path(@todo_list), class: "button expand radius outline alert", method: :delete, data: { confirm: "Are you sure? This is no undo." } do %>
+		<%= link_to todo_list_path(@todo_list), class: "button expand radius outline alert", method: :delete, data: { confirm: "Are you sure? This is no undo." } do %>
 			<span class="fa fa-trash-o"></span>
 			Delete
 		<% end %>
@@ -32,28 +32,10 @@
 
 <% if @todo_list.todo_items.size > 0 %>
 	<ul class="list todo-items no-bullet">	
-		<% @todo_list.todo_items.each do |todo_item| %>
-			<li id="<%= dom_id(todo_item)%>" class="todo_item row">
-				<div class="small-2 medium-1 columns checkmark">
-					<% if todo_item.completed? %>
-						<%= link_to "Mark Incomplete", complete_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, class: "icon-check checked hide-text" %>
-					<% else %>
-						<%= link_to "Mark Complete", complete_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, class: "icon-check unchecked hide-text" %>
-					<% end %>
-				</div>
-				<div class="small-10 medium-11 columns truncate todo-content" title="<%= todo_item.content %>">
-					<%= link_to todo_item.content, edit_todo_list_todo_item_path(@todo_list, todo_item) %>
-				</div>
-			</li>
-		<% end %>
+		<%= render partial: 'todo_item', collection: @todo_list.todo_items %>
 	</ul>
 <% else %>
-	<div class="row blank-slate" >
-		<div class="small-12 small-centered columns">
-			<p>You don't have any todo items!</p>
-			<%= link_to "Add Item", new_todo_list_todo_item_path(@todo_list), class: "button radius" %>
-		</div>
-	</div>
+	<%= render partial: 'blank_slate' %>
 <% end %>
 
 <div id="email-modal" class="reveal-modal tiny" data-reveal>

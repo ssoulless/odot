@@ -1,0 +1,6 @@
+<li id="<%= dom_id(todo_list) %>" class="clearfix">
+	<%= link_to todo_list_todo_items_path(todo_list), class: "row" do %>
+  	<div class="small-10 medium-11 columns truncate" title="<%= todo_list.title %>"><%= todo_list.title %></div>
+  	<div class="small-2 medium-1 columns"><span class="label round"><%= todo_list.todo_items.size %></span></div>
+	<% end %>
+</li>
