@@ -31,9 +31,13 @@ RSpec.describe UsersController, :type => :controller do
     "password_confirmation" => "password12345"  
   }}
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) {{
+    "first_name" => "MyString",
+    "last_name" => "LastName",
+    "email" => "email",
+    "password" => "password12345",
+    "password_confirmation" => "password12345"  
+  }}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -109,15 +113,19 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) {{
+        "first_name" => "NewMyString",
+        "last_name" => "NewLastName",
+        "email" => "newemail@example.com",
+        "password" => "newpassword12345",
+        "password_confirmation" => "newpassword12345"
+      }}
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         put :update, {:id => user.to_param, :user => new_attributes}, valid_session
         user.reload
-        skip("Add assertions for updated state")
+        expect(user.first_name).to eq("NewMyString")
       end
 
       it "assigns the requested user as @user" do

@@ -14,16 +14,14 @@ describe "Editing todo lists" do
 		todo_list = options[:todo_list]
 
 		visit "/todo_lists"
-		within "#todo_list_#{todo_list.id}" do
-			click_link "Edit"
-		end
+		click_link todo_list.title
+		click_link "Edit"
 
 		fill_in "Title", with: options[:title]
-		click_button "Update Todo list"
+		click_button "Save"
 	end
 
 	it "updates a todo list successfully with correct information" do
-		pending "Link for edit todo_lists"
 		visit "/todo_lists"
 		update_todo_list todo_list: todo_list,
 						 title: %Q|New title|
@@ -34,14 +32,12 @@ describe "Editing todo lists" do
 	end
 
 	it "displays an error with no title" do
-		pending "Link for edit todo_lists"
 		update_todo_list todo_list: todo_list, title: %Q||
-		expect(page).to have_content(%Q|error|)
+		expect(page).to have_content(/can't be blank/i)
 	end
 
 	it "displays an error with too short a title" do
-		pending "Link to edit todo_lists"
 		update_todo_list todo_list: todo_list, title: %Q|hi|
-		expect(page).to have_content(%Q|error|)
+		expect(page).to have_content(/is too short/i)
 	end
 end
