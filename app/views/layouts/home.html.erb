@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield :title %>Odot</title>
+  <title>Odot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -12,11 +12,21 @@
 <body>
 
 	<%= render partial: 'layouts/flash' %>
-	<header>
-	<%= render partial: 'layouts/header_logged_in' %>
-	<%= render partial: 'layouts/header_logged_out' %>
+	<header class="row global-header">
+		<div class="small-12 small-centered columns">
+			<%= render partial: 'layouts/header_logged_out' %>			
+		</div>
 	</header>
-	<%= yield %>
+	<div class="row">
+		<div class="small-12 small-centered columns">
+			<%= yield %>
+		</div>
+	</div>
+	<footer class="row global-footer">
+		<div class="small-12 small-centered  columns">
+			<%= link_to "Already have an account? Sign In.", login_path %>
+		</div>
+	</footer>
 	
 </body>
 </html>
