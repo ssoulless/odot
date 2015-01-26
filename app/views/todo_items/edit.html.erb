@@ -2,3 +2,8 @@
 <%= form_for [@todo_list, @todo_item], builder: FoundationFormBuilder do |form| %>
 	<%= render partial: 'form', locals: { form: form } %>
 <% end %>
+<div class="row">
+	<div class="small-12 columns">
+		<%= link_to "Delete", todo_list_todo_item_path(@todo_list, @todo_item), method: :delete, data: { confirm: "Are you sure?" }, class: "button radius expand alert" %>
+	</div>
+</div>
