@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :render_error
 
+  def logged_in?
+    current_user
+  end
+  helper_method :logged_in?
+
   def current_user
     if session[:user_id]
       @current_user ||= User.find(session[:user_id])
@@ -17,6 +22,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  helper_method :current_user
 
   def require_user
     if current_user
