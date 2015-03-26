@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
 	before_save :downcase_email
 
+	def full_name
+		first_name + " " + last_name
+	end
+
 	def downcase_email
 		self.email = email.downcase
 	end
