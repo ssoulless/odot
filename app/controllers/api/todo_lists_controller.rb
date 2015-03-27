@@ -5,7 +5,7 @@ class Api::TodoListsController < ApplicationController
 	end
 	def show
 		list = TodoList.find(params[:id])
-		render json: list
+		render json: list.as_json(include: [:todo_items])
 	end
 	def create
 		list = TodoList.new(list_params)
